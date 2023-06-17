@@ -15,6 +15,7 @@ type Armor struct {
 type Player struct {
 	x      int64
 	y      int64
+	class  string
 	weapon Weapon
 	armor  Armor
 }

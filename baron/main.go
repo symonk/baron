@@ -1,21 +1,14 @@
-package baron
+package main
 
 import (
-	"log"
-
 	"github.com/hajimehoshi/ebiten"
 )
 
-func update(screen *ebiten.Image) error {
-	if ebiten.IsDrawingSkipped() {
-		return nil
-	}
-	ebiten.DebugPrint(screen, "Baron")
-	return nil
-}
-
 func main() {
-	if err := ebiten.Run(update, 640, 640, 2, "Baron"); err != nil {
-		log.Fatal(err)
+	ebiten.SetWindowTitle(window_title)
+	ebiten.SetWindowSize(window_width, window_height)
+	baron := &Game{}
+	if err := ebiten.RunGame(baron); err != nil {
+		panic(err)
 	}
 }

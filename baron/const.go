@@ -2,6 +2,6 @@ package main
 
 const (
 	windowTitle  = "Baron"
-	windowWidth  = 640
-	windowHeight = 480
+	windowWidth  = 1024
+	windowHeight = 768
 )

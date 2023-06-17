@@ -2,4 +2,4 @@
 
 -----
 
-A 2D platform style games written in `Go`.
+A 2D platformer style game written in `Go`.

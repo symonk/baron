@@ -15,12 +15,15 @@ type Armor struct {
 type PowerUp struct {
 }
 
+type Wellbeing struct{}
+
 type Player struct {
-	x       int
-	y       int
-	class   string
-	weapon  Weapon
-	armor   Armor
-	speed   int
-	powerUp *PowerUp
+	x         int
+	y         int
+	class     string
+	weapon    Weapon
+	armor     Armor
+	speed     int
+	powerUp   PowerUp
+	wellbeing Wellbeing
 }

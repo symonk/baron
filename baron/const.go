@@ -1,5 +1,7 @@
 package main
 
-const window_width = 640
-const window_height = 480
-const window_title = "Baron"
+const (
+	windowTitle  = "Baron"
+	windowWidth  = 640
+	windowHeight = 480
+)

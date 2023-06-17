@@ -5,8 +5,8 @@ import (
 )
 
 func main() {
-	ebiten.SetWindowTitle(window_title)
-	ebiten.SetWindowSize(window_width, window_height)
+	ebiten.SetWindowTitle(windowTitle)
+	ebiten.SetWindowSize(windowWidth, windowHeight)
 	baron := &Game{}
 	if err := ebiten.RunGame(baron); err != nil {
 		panic(err)

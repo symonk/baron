@@ -1,14 +1,30 @@
 package main
 
-import "github.com/hajimehoshi/ebiten/v2"
+import (
+	"github.com/hajimehoshi/ebiten/audio"
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 type Game struct {
-	isMenu bool
+	audioPlayer   *AudioPlayer
+	audioPlayerCh chan *AudioPlayer
+	errCh         chan *error
 }
 
 func (g *Game) Update() error {
 	// Update logical state
 	return nil
+}
+
+func NewGame() (*Game, error) {
+	audioContext := audio.NewContext(sampleRate)
+	g := &Game{
+		audioPlayerCh:  make(chan **Player)
+		errorCh: make(chan error),
+	}
+	player, err := AudioPlayer{}
+	g.audioPlayer = playe
+	return g, nil
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {

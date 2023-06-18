@@ -9,6 +9,7 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b // indirect
 	github.com/hajimehoshi/ebiten v1.12.12 // indirect
+	github.com/hajimehoshi/oto v0.6.8 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jezek/xgb v1.1.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect

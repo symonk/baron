@@ -18,12 +18,12 @@ func (g *Game) Update() error {
 
 func NewGame() (*Game, error) {
 	audioContext := audio.NewContext(sampleRate)
-	g := &Game{
-		audioPlayerCh:  make(chan **Player)
-		errorCh: make(chan error),
+	g = &Game{
+		audioPlayerCh: make(chan *AudioPlayer),
+		errorCh:       make(chan error),
 	}
 	player, err := AudioPlayer{}
-	g.audioPlayer = playe
+	g.audioPlayer = player
 	return g, nil
 }
 

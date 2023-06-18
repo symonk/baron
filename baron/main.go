@@ -8,7 +8,6 @@ var loadingBackgroundImg *ebiten.Image
 
 func init() {
 	loadingBackgroundImg = LoadBackgroundImage()
-	track := 
 }
 
 func main() {
@@ -17,7 +16,7 @@ func main() {
 	ebiten.SetVsyncEnabled(true)
 	ebiten.SetTPS(144)
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
-	baron := &Game{}
+	baron := &NewGame{}
 	if err := ebiten.RunGame(baron); err != nil {
 		panic(err)
 	}

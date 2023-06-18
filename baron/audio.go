@@ -7,6 +7,8 @@ import (
 	"github.com/hajimehoshi/ebiten/audio"
 )
 
+const bytesPerSample = 4
+
 type audioStream interface {
 	io.ReadSeeker
 	Length() int64
@@ -24,7 +26,6 @@ type AudioPlayer struct {
 
 func NewAudioPlayer(game *Game, audioContext *audio.Context) (*AudioPlayer, error) {
 	var stream audioStream
-	stream, err = wav.
 	player, err := audioContext.NewPlayer(s)
 }
 

@@ -1,20 +1,13 @@
 package main
 
 import (
-	"log"
-
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
-var img *ebiten.Image
+var loadingBackgroundImg *ebiten.Image
 
 func init() {
-	var err error
-	img, _, err = ebitenutil.NewImageFromFile("./assets/background.png")
-	if err != nil {
-		log.Fatal(err)
-	}
+	loadingBackgroundImg = LoadBackgroundImage()
 }
 
 func main() {

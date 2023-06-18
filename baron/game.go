@@ -2,7 +2,9 @@ package main
 
 import "github.com/hajimehoshi/ebiten/v2"
 
-type Game struct{}
+type Game struct {
+	isMenu bool
+}
 
 func (g *Game) Update() error {
 	// Update logical state
@@ -11,7 +13,7 @@ func (g *Game) Update() error {
 
 func (g *Game) Draw(screen *ebiten.Image) {
 	options := &ebiten.DrawImageOptions{}
-	screen.DrawImage(img, options)
+	screen.DrawImage(loadingBackgroundImg, options)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {

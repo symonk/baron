@@ -17,6 +17,7 @@ func NewGame() *Game {
 }
 
 func (g *Game) Update() error {
+	MovePlayer(g)
 	return nil
 }
 

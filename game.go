@@ -2,7 +2,9 @@ package main
 
 import "github.com/hajimehoshi/ebiten/v2"
 
-type Game struct{}
+type Game struct {
+	Tiles []MapTile
+}
 
 func NewGame() *Game {
 	return &Game{}

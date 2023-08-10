@@ -1,23 +1,18 @@
 package main
 
 import (
+	_ "image/png"
+	"log"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-var loadingBackgroundImg *ebiten.Image
-
-func init() {
-	loadingBackgroundImg = LoadBackgroundImage()
-}
-
 func main() {
-	ebiten.SetWindowTitle(windowTitle)
-	ebiten.SetWindowSize(windowWidth, windowHeight)
-	ebiten.SetVsyncEnabled(true)
-	ebiten.SetTPS(144)
+	game := NewGame()
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
-	baron := &NewGame{}
-	if err := ebiten.RunGame(baron); err != nil {
-		panic(err)
+	ebiten.SetWindowTitle(GameName)
+	ebiten.SetWindowSize(1024, 768)
+	if err := ebiten.RunGame(game); err != nil {
+		log.Fatal(err)
 	}
 }

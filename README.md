@@ -2,6 +2,6 @@
 
 -----
 
-A 2D platformer style game written in `Go`.
+A 2D Platformer with an insane difficulty written in `Go` using `ebiten` game engine.
 
 -----

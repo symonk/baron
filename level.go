@@ -64,3 +64,15 @@ func (l *Level) CreateTiles() []MapTile {
 	}
 	return tiles
 }
+
+func (l *Level) DrawLevel(screen *ebiten.Image) {
+	gd := NewGameData()
+	for x := 0; x < gd.ScreenWidth; x++ {
+		for y := 0; y < gd.ScreenHeight; y++ {
+			tile := l.Tiles[l.GetIndexFromXY(x, y)]
+			options := &ebiten.DrawImageOptions{}
+			options.GeoM.Translate(float64(tile.TopLeftPixelX), float64(tile.TopLeftPixelY))
+			screen.DrawImage(tile.Image, options)
+		}
+	}
+}

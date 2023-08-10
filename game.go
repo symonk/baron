@@ -15,16 +15,8 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	gd := NewGameData()
 	level := g.Map.Dungeons[0].Levels[0]
-	for x := 0; x < gd.ScreenWidth; x++ {
-		for y := 0; y < gd.ScreenHeight; y++ {
-			tile := level.Tiles[level.GetIndexFromXY(x, y)]
-			options := &ebiten.DrawImageOptions{}
-			options.GeoM.Translate(float64(tile.TopLeftPixelX), float64(tile.TopLeftPixelY))
-			screen.DrawImage(tile.Image, options)
-		}
-	}
+	level.DrawLevel(screen)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {

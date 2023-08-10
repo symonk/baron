@@ -5,12 +5,17 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
+var (
+	position   *ecs.Component
+	renderable *ecs.Component
+)
+
 func InitializeWorld() (*ecs.Manager, map[string]ecs.Tag) {
 	tags := make(map[string]ecs.Tag)
 	manager := ecs.NewManager()
 	player := manager.NewComponent()
-	position := manager.NewComponent()
-	renderable := manager.NewComponent()
+	position = manager.NewComponent()
+	renderable = manager.NewComponent()
 	movable := manager.NewComponent()
 
 	playerImg, _, err := ebitenutil.NewImageFromFile("assets/images/player.png")

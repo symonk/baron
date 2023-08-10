@@ -2,7 +2,6 @@ package main
 
 import (
 	_ "image/png"
-	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -13,6 +12,6 @@ func main() {
 	ebiten.SetWindowTitle(GameName)
 	ebiten.SetWindowSize(1280, 800)
 	if err := ebiten.RunGame(game); err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }

@@ -14,8 +14,8 @@ type GameData struct {
 }
 
 func NewGameData() GameData {
-	return GameData{ScreenWidth: 1280,
-	ScreenHeight: 1024,
+	return GameData{ScreenWidth: 80,
+	ScreenHeight: 50,
 	TileWidth: 16,
 	TileHeight: 16}
 }

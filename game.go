@@ -1,13 +1,19 @@
 package main
 
-import "github.com/hajimehoshi/ebiten/v2"
+import (
+	"github.com/bytearena/ecs"
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 type Game struct {
-	Map GameMap
+	Map       GameMap
+	World     *ecs.Manager
+	WorldTags map[string]ecs.Tag
 }
 
 func NewGame() *Game {
-	return &Game{Map: NewGameMap()}
+	world, tags := InitializeWorld()
+	return &Game{Map: NewGameMap(), World: world, WorldTags: tags}
 }
 
 func (g *Game) Update() error {

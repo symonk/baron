@@ -7,6 +7,7 @@ require github.com/hajimehoshi/ebiten/v2 v2.5.4
 require (
 	github.com/ebitengine/purego v0.3.2 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
+	github.com/gen2brain/raylib-go/raylib v0.0.0-20230719211022-1083eace2049 // indirect
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20221017161538-93cebf72946b // indirect
 	github.com/hajimehoshi/ebiten v1.12.12 // indirect
 	github.com/hajimehoshi/oto v0.6.8 // indirect

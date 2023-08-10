@@ -32,9 +32,10 @@ func (l *Level) GetIndexFromXY(x, y int) int {
 
 func (l *Level) CreateTiles() []MapTile {
 	gameData := NewGameData()
-	tiles := make([]MapTile, 0)
+	tiles := make([]MapTile, gameData.ScreenHeight*gameData.ScreenWidth)
 	for x := 0; x < gameData.ScreenWidth; x++ {
 		for y := 0; y < gameData.ScreenHeight; y++ {
+			index := l.GetIndexFromXY(x, y)
 			if x == 0 || x == gameData.ScreenWidth-1 || y == 0 || y == gameData.ScreenHeight-1 {
 				wall, _, err := ebitenutil.NewImageFromFile("assets/images/wall.png")
 				if err != nil {
@@ -46,7 +47,8 @@ func (l *Level) CreateTiles() []MapTile {
 					Blocks:        true,
 					Image:         wall,
 				}
-				tiles = append(tiles, tile)
+				tiles[index] = tile
+
 			} else {
 				floor, _, err := ebitenutil.NewImageFromFile("assets/images/floor.png")
 				if err != nil {
@@ -58,7 +60,7 @@ func (l *Level) CreateTiles() []MapTile {
 					Blocks:        true,
 					Image:         floor,
 				}
-				tiles = append(tiles, tile)
+				tiles[index] = tile
 			}
 		}
 	}

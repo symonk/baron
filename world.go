@@ -19,5 +19,9 @@ func InitializeWorld() (*ecs.Manager, map[string]ecs.Tag) {
 	}
 
 	manager.NewEntity().AddComponent(player, Player{}).AddComponent(renderable, &Renderable{Image: playerImg}).AddComponent(movable, Movable{}).AddComponent(position, &Position{X: 40, Y: 25})
+	players := ecs.BuildTag(player, position)
+	tags["players"] = players
+	renderables := ecs.BuildTag(renderable, position)
+	tags["renderables"] = renderables
 	return manager, tags
 }

@@ -57,7 +57,7 @@ func (l *Level) CreateTiles() []MapTile {
 				tile := MapTile{
 					TopLeftPixelX: x * gameData.TileWidth,
 					TopLeftPixelY: y * gameData.TileWidth,
-					Blocks:        true,
+					Blocks:        false,
 					Image:         floor,
 				}
 				tiles[index] = tile

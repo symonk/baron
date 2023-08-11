@@ -19,9 +19,14 @@ func MovePlayer(g *Game) {
 		x = 1
 	}
 
+	level := g.Map.CurrentLevel
 	for _, result := range g.World.Query(players) {
 		pos := result.Components[globalPosition].(*Position)
-		pos.X += x
-		pos.Y += y
+		index := level.GetIndexFromXY(pos.X+x, pos.Y+y)
+		tile := level.Tiles[index]
+		if !tile.Blocks {
+			pos.X += x
+			pos.Y += y
+		}
 	}
 }

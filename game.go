@@ -19,9 +19,7 @@ func NewGame() *Game {
 
 func (g *Game) Update() error {
 	g.count++
-	if g.count%8 == 0 {
-		MovePlayer(g)
-	}
+	MovePlayer(g)
 	return nil
 }
 

@@ -9,7 +9,7 @@ type Game struct {
 	Map       GameMap
 	World     *ecs.Manager
 	WorldTags map[string]ecs.Tag
-	count     int
+	ticks     int
 }
 
 func NewGame() *Game {
@@ -18,7 +18,7 @@ func NewGame() *Game {
 }
 
 func (g *Game) Update() error {
-	g.count++
+	g.ticks++
 	MovePlayer(g)
 	return nil
 }

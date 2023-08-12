@@ -3,7 +3,7 @@ package game
 import "github.com/hajimehoshi/ebiten/v2"
 
 func DrawEntity(g *Game, level Level, screen *ebiten.Image) {
-	for _, result := range g.GameWorld.Query(g.GameWorld.WorldTags[Renderables]) {
+	for _, result := range g.GameWorld.World.Query(g.GameWorld.WorldTags[Renderables]) {
 		pos := result.Components[globalPosition].(*Position)
 		img := result.Components[globalRenderable].(*Renderable).Image
 

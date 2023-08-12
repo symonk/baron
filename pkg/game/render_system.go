@@ -2,8 +2,8 @@ package game
 
 import "github.com/hajimehoshi/ebiten/v2"
 
-func ProcessRenderables(g *Game, level Level, screen *ebiten.Image) {
-	for _, result := range g.World.Query(g.WorldTags["renderables"]) {
+func DrawEntity(g *Game, level Level, screen *ebiten.Image) {
+	for _, result := range g.GameWorld.Query(g.GameWorld.WorldTags[Renderables]) {
 		pos := result.Components[globalPosition].(*Position)
 		img := result.Components[globalRenderable].(*Renderable).Image
 

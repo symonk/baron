@@ -1,5 +1,14 @@
 package game
 
+import "github.com/bytearena/ecs"
+
 const (
-	GameName = "Baron"
+	GameName     = "Baron"
+	PlayerEntity = "player"
+	Renderables  = "renderables"
+)
+
+var (
+	globalPosition   *ecs.Component
+	globalRenderable *ecs.Component
 )

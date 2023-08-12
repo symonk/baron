@@ -1,16 +1,28 @@
-package game
+package world
 
 import (
 	"github.com/bytearena/ecs"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
-var (
-	globalPosition   *ecs.Component
-	globalRenderable *ecs.Component
-)
+type World struct {
+	World     *ecs.Manager
+	WorldTags map[string]ecs.Tag
+}
 
-func InitializeWorld() (*ecs.Manager, map[string]ecs.Tag) {
+func NewWorld() *World {
+	tags := make(map[string]ecs.Tag)
+	return &World{
+		World:     ecs.NewManager(),
+		WorldTags: tags,
+	}
+}
+
+func (g *World) Init() {
+
+}
+
+func CreateWorld() (*ecs.Manager, map[string]ecs.Tag) {
 	tags := make(map[string]ecs.Tag)
 	manager := ecs.NewManager()
 	player := manager.NewComponent()

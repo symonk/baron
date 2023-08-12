@@ -1,20 +1,23 @@
 package game
 
 import (
-	"github.com/bytearena/ecs"
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/symonk/baron/pkg/world"
 )
 
 type Game struct {
 	Map       GameMap
-	World     *ecs.Manager
-	WorldTags map[string]ecs.Tag
+	GameWorld *world.World
 	ticks     int
 }
 
 func NewGame() *Game {
-	world, tags := InitializeWorld()
-	return &Game{Map: NewGameMap(), World: world, WorldTags: tags}
+	return &Game{Map: NewGameMap(), GameWorld: world.NewWorld()}
+}
+
+func (g *Game) registerComponents() {
+	playerComponent := g.GameWorld.World.NewComponent()
+	g.GameWorld.World.NewEntity().AddComponent(playerComponent, &Player{})
 }
 
 func (g *Game) Update() error {
@@ -26,7 +29,7 @@ func (g *Game) Update() error {
 func (g *Game) Draw(screen *ebiten.Image) {
 	level := g.Map.CurrentLevel
 	level.DrawLevel(screen)
-	ProcessRenderables(g, level, screen)
+	DrawEntity(g, level, screen)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {

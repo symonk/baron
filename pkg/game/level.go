@@ -4,7 +4,6 @@ import (
 	_ "image/png"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type Level struct {
@@ -37,10 +36,7 @@ func (l *Level) CreateTiles() []MapTile {
 		for y := 0; y < gameData.ScreenHeight; y++ {
 			index := l.GetIndexFromXY(x, y)
 			if x == 0 || x == gameData.ScreenWidth-1 || y == 0 || y == gameData.ScreenHeight-1 {
-				wall, _, err := ebitenutil.NewImageFromFile("assets/images/wall.png")
-				if err != nil {
-					panic(err)
-				}
+				wall := LoadImageFromAssets("wall.png")
 				tile := MapTile{
 					TopLeftPixelX: x * gameData.TileWidth,
 					TopLeftPixelY: y * gameData.TileHeight,
@@ -50,10 +46,7 @@ func (l *Level) CreateTiles() []MapTile {
 				tiles[index] = tile
 
 			} else {
-				floor, _, err := ebitenutil.NewImageFromFile("assets/images/floor.png")
-				if err != nil {
-					panic(err)
-				}
+				floor := LoadImageFromAssets("floor.png")
 				tile := MapTile{
 					TopLeftPixelX: x * gameData.TileWidth,
 					TopLeftPixelY: y * gameData.TileWidth,

@@ -2,7 +2,6 @@ package game
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type Player struct {
@@ -18,10 +17,7 @@ func (p *Player) Move() {
 }
 
 func NewPlayer() *Player {
-	baseImage, _, err := ebitenutil.NewImageFromFile("assets/images/player.png")
-	if err != nil {
-		panic(err)
-	}
+	baseImage := LoadImageFromAssets("player.png")
 	return &Player{
 		MaxHealth:     100,
 		CurrentHealth: 100,

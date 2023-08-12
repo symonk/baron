@@ -1,6 +1,7 @@
 {
     "configurations": [
         {
+            "cwd": "${workspaceFolder}",
             "name": "Launch Program",
             "program": "${workspaceFolder}//cmd//baron//main.go",
             "request": "launch",

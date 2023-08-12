@@ -1,6 +1,8 @@
 package game
 
 import (
+	"fmt"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -19,15 +21,20 @@ func MovePlayer(g *Game) {
 	if ebiten.IsKeyPressed(ebiten.KeyRight) || ebiten.IsKeyPressed(ebiten.KeyD) {
 		x = 1
 	}
+	if ebiten.IsKeyPressed(ebiten.KeySpace) {
+		fmt.Println("Using Weapon.")
+	}
 
 	level := g.Map.CurrentLevel
-	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[Renderables]) {
+	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[RenderablesView]) {
 		pos := result.Components[position].(*Position)
 		index := level.GetIndexFromXY(pos.X+x, pos.Y+y)
 		tile := level.Tiles[index]
 		if !tile.Blocks {
 			pos.X += x
 			pos.Y += y
+		} else {
+			fmt.Printf("Tile is blocking (%d/%d)\n", pos.X, pos.Y)
 		}
 	}
 }

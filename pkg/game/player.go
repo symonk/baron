@@ -17,7 +17,7 @@ func (p *Player) Move() {
 }
 
 func NewPlayer() *Player {
-	baseImage := LoadImageFromAssets("player.png")
+	baseImage := LoadImageFromAssets("runner.png")
 	return &Player{
 		MaxHealth:     100,
 		CurrentHealth: 100,

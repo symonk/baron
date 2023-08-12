@@ -1,7 +1,11 @@
 package game
 
 const (
-	GameName     = "Baron"
-	PlayerEntity = "player"
-	Renderables  = "renderables"
+	GameName = "Baron"
+)
+
+// ECS View Lookups
+const (
+	PlayersView     = "playersView"
+	RenderablesView = "renderablesView"
 )

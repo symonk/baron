@@ -7,8 +7,8 @@ type EntityQueryManager struct {
 
 func DrawEntity(g *Game, level Level, screen *ebiten.Image) {
 	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[Renderables]) {
-		pos := result.Components[globalPosition].(*Position)
-		img := result.Components[globalRenderable].(*Renderable).Image
+		pos := result.Components[position].(*Position)
+		img := result.Components[renderables].(*Renderable).Image
 
 		index := level.GetIndexFromXY(pos.X, pos.Y)
 		tile := level.Tiles[index]

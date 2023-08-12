@@ -6,23 +6,34 @@ import (
 	"github.com/symonk/baron/pkg/world"
 )
 
+var (
+	position    *ecs.Component
+	renderables *ecs.Component
+)
+
 type Game struct {
 	Map       GameMap
 	GameWorld *world.World
 	ticks     int
+	Player    *Player
 }
 
 func NewGame() *Game {
-	game := &Game{Map: NewGameMap(), GameWorld: world.NewWorld()}
-	game.registerComponents()
+	game := &Game{Map: NewGameMap(), GameWorld: world.NewWorld(), Player: NewPlayer()}
+	game.registerPlayerToWorld()
 	return game
 }
 
-func (g *Game) registerComponents() {
-	playerComponent := g.GameWorld.Manager.NewComponent()
-	g.GameWorld.Manager.NewEntity().AddComponent(playerComponent, &Player{})
-	playerTags := ecs.BuildTag(playerComponent)
-	g.GameWorld.Tags[PlayerEntity] = playerTags
+// Create an entity and register our player as a componeent.
+func (g *Game) registerPlayerToWorld() {
+	position = g.GameWorld.Manager.NewComponent()
+	renderables = g.GameWorld.Manager.NewComponent()
+	player := g.GameWorld.Manager.NewComponent()
+	g.GameWorld.Manager.NewEntity().AddComponent(player, &Player{}).AddComponent(renderables, &Renderable{Image: LoadImageFromAssets("player.png")}).AddComponent(position, &Position{X: 40, Y: 40})
+	players := ecs.BuildTag(player, position)
+	g.GameWorld.Tags["players"] = players
+	renderables := ecs.BuildTag(renderables, position)
+	g.GameWorld.Tags["renderables"] = renderables
 }
 
 func (g *Game) Update() error {

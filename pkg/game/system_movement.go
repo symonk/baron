@@ -21,8 +21,8 @@ func MovePlayer(g *Game) {
 	}
 
 	level := g.Map.CurrentLevel
-	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[PlayerEntity]) {
-		pos := result.Components[globalPosition].(*Position)
+	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[Renderables]) {
+		pos := result.Components[position].(*Position)
 		index := level.GetIndexFromXY(pos.X+x, pos.Y+y)
 		tile := level.Tiles[index]
 		if !tile.Blocks {

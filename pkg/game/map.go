@@ -1,4 +1,4 @@
-package main
+package game
 
 type GameMap struct {
 	Dungeons     []Dungeon

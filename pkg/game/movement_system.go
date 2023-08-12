@@ -1,9 +1,10 @@
 package game
 
-import "github.com/hajimehoshi/ebiten/v2"
+import (
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 func MovePlayer(g *Game) {
-	players := g.GameWorld.Tags[PlayerEntity]
 	x, y := 0, 0
 
 	if ebiten.IsKeyPressed(ebiten.KeyUp) || ebiten.IsKeyPressed(ebiten.KeyW) {
@@ -20,7 +21,7 @@ func MovePlayer(g *Game) {
 	}
 
 	level := g.Map.CurrentLevel
-	for _, result := range g.GameWorld.Manager.Query(players) {
+	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[PlayerEntity]) {
 		pos := result.Components[globalPosition].(*Position)
 		index := level.GetIndexFromXY(pos.X+x, pos.Y+y)
 		tile := level.Tiles[index]

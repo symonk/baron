@@ -22,7 +22,7 @@ func (g *Game) registerComponents() {
 	playerComponent := g.GameWorld.Manager.NewComponent()
 	g.GameWorld.Manager.NewEntity().AddComponent(playerComponent, &Player{})
 	playerTags := ecs.BuildTag(playerComponent)
-	g.GameWorld.Tags["players"] = playerTags
+	g.GameWorld.Tags[PlayerEntity] = playerTags
 }
 
 func (g *Game) Update() error {

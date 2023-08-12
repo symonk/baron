@@ -9,6 +9,8 @@ type Player struct {
 	MaxHealth     int
 	CurrentHealth int
 	Image         *ebiten.Image
+	CurrX         int
+	CurrY         int
 }
 
 func (p *Player) Move() {

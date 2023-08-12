@@ -1,6 +1,7 @@
 package game
 
 import (
+	"github.com/bytearena/ecs"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/symonk/baron/pkg/world"
 )
@@ -12,12 +13,16 @@ type Game struct {
 }
 
 func NewGame() *Game {
-	return &Game{Map: NewGameMap(), GameWorld: world.NewWorld()}
+	game := &Game{Map: NewGameMap(), GameWorld: world.NewWorld()}
+	game.registerComponents()
+	return game
 }
 
 func (g *Game) registerComponents() {
-	playerComponent := g.GameWorld.World.NewComponent()
-	g.GameWorld.World.NewEntity().AddComponent(playerComponent, &Player{})
+	playerComponent := g.GameWorld.Manager.NewComponent()
+	g.GameWorld.Manager.NewEntity().AddComponent(playerComponent, &Player{})
+	playerTags := ecs.BuildTag(playerComponent)
+	g.GameWorld.Tags["players"] = playerTags
 }
 
 func (g *Game) Update() error {

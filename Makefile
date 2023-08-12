@@ -15,7 +15,7 @@ clean:  ## Remove build related files
 lint:  ## Lint the code base
 	pre-commit run --all-files
 
-launch:  ## launc the binary
+launch: build ## launch the binary
 	./dist/binary/baron
 
 help:  ## Show this help.

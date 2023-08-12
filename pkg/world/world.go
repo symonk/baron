@@ -5,15 +5,15 @@ import (
 )
 
 type World struct {
-	World     *ecs.Manager
-	WorldTags map[string]ecs.Tag
+	Manager *ecs.Manager
+	Tags    map[string]ecs.Tag
 }
 
 func NewWorld() *World {
 	tags := make(map[string]ecs.Tag)
 	return &World{
-		World:     ecs.NewManager(),
-		WorldTags: tags,
+		Manager: ecs.NewManager(),
+		Tags:    tags,
 	}
 }
 

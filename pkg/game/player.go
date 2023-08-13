@@ -4,12 +4,18 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type Player struct {
+type PlayerStats struct {
 	MaxHealth     int
 	CurrentHealth int
-	Image         *ebiten.Image
-	CurrX         int
-	CurrY         int
+	MaxMana       int
+	CurrentMana   int
+}
+
+type Player struct {
+	Image *ebiten.Image
+	Stats PlayerStats
+	CurrX int
+	CurrY int
 }
 
 func (p *Player) Move() {
@@ -19,8 +25,7 @@ func (p *Player) Move() {
 func NewPlayer() *Player {
 	baseImage := LoadImageFromAssets("player.png")
 	return &Player{
-		MaxHealth:     100,
-		CurrentHealth: 100,
-		Image:         baseImage,
+		Stats: PlayerStats{MaxHealth: 100, CurrentHealth: 100, MaxMana: 100, CurrentMana: 100},
+		Image: baseImage,
 	}
 }

@@ -17,6 +17,10 @@ func NewWorld() *World {
 	}
 }
 
+func (g *World) RegisterEntity() {
+
+}
+
 func (g *World) Init() {
 
 }

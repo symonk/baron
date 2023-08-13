@@ -8,4 +8,5 @@ const (
 const (
 	PlayersView     = "playersView"
 	RenderablesView = "renderablesView"
+	BossesView      = "bossesView"
 )

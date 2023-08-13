@@ -47,7 +47,7 @@ func (g *Game) AddTag(key string, elements ...any) {
 func (g *Game) Draw(screen *ebiten.Image) {
 	level := g.Map.CurrentLevel
 	level.DrawLevel(screen)
-	DrawEntity(g, level, screen)
+	DrawRenderables(g, level, screen)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {

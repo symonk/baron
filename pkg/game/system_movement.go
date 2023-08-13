@@ -28,6 +28,17 @@ func MovePlayer(g *Game) {
 		if !tile.Passable {
 			pos.X += x
 			pos.Y += y
+		} else {
+			g.Player.TransformHealth(-10)
 		}
+	}
+}
+
+func ResetPlayer(g *Game) {
+	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[RenderablesView]) {
+		pos := result.Components[position].(*Position)
+		pos.X = 20
+		pos.Y = 20
+		g.Player.Revive()
 	}
 }

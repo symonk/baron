@@ -26,19 +26,25 @@ func NewGame() *Game {
 
 // Create an entity and register our player as a componeent.
 func (g *Game) registerPlayerToWorld() {
+	playerEntity := NewPlayer()
 	position = g.GameWorld.Manager.NewComponent()
 	renderables = g.GameWorld.Manager.NewComponent()
 	player := g.GameWorld.Manager.NewComponent()
-	g.GameWorld.Manager.NewEntity().AddComponent(player, &Player{}).AddComponent(renderables, &Renderable{Image: LoadImageFromAssets("player.png")}).AddComponent(position, &Position{X: 20, Y: 20})
+	g.GameWorld.Manager.NewEntity().AddComponent(player, playerEntity).AddComponent(renderables, &Renderable{Image: LoadImageFromAssets("player.png")}).AddComponent(position, &Position{X: 20, Y: 20})
 	players := ecs.BuildTag(player, position)
 	g.GameWorld.Tags[PlayersView] = players
 	renderables := ecs.BuildTag(renderables, position)
 	g.GameWorld.Tags[RenderablesView] = renderables
+	g.Player = playerEntity
 }
 
 func (g *Game) Update() error {
 	g.ticks++
-	MovePlayer(g)
+	if !g.Player.IsDead {
+		MovePlayer(g)
+	} else {
+		ResetPlayer(g)
+	}
 	return nil
 }
 

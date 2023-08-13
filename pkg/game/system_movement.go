@@ -1,8 +1,6 @@
 package game
 
 import (
-	"fmt"
-
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -20,9 +18,6 @@ func MovePlayer(g *Game) {
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyRight) || ebiten.IsKeyPressed(ebiten.KeyD) {
 		x = 1
-	}
-	if ebiten.IsKeyPressed(ebiten.KeySpace) {
-		fmt.Println("Using Weapon.")
 	}
 
 	level := g.Map.CurrentLevel

@@ -22,7 +22,7 @@ func DrawEntity(g *Game, level Level, screen *ebiten.Image) {
 		index := level.GetIndexFromXY(pos.X, pos.Y)
 		tile := level.Tiles[index]
 		options := &ebiten.DrawImageOptions{}
-		options.GeoM.Translate(float64(tile.TopLeftPixelX), float64(tile.TopLeftPixelY))
+		options.GeoM.Translate(float64(tile.PixelX), float64(tile.PixelY))
 		i := (g.ticks / 5) % frameCount
 		sx, sy := frame0X+i*frameWidth, frame0Y
 		sub := img.SubImage(image.Rect(sx, sy, sx+frameWidth, sy+frameheight)).(*ebiten.Image)

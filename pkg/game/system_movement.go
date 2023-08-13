@@ -30,7 +30,7 @@ func MovePlayer(g *Game) {
 		pos := result.Components[position].(*Position)
 		index := level.GetIndexFromXY(pos.X+x, pos.Y+y)
 		tile := level.Tiles[index]
-		if !tile.Blocks {
+		if !tile.Passable {
 			pos.X += x
 			pos.Y += y
 		} else {

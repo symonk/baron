@@ -7,7 +7,7 @@ import (
 )
 
 type Level struct {
-	Tiles []MapTile
+	Tiles []*MapTile
 }
 
 func NewLevel() Level {
@@ -18,10 +18,19 @@ func NewLevel() Level {
 }
 
 type MapTile struct {
-	TopLeftPixelX int
-	TopLeftPixelY int
-	Blocks        bool
-	Image         *ebiten.Image
+	PixelX   int
+	PixelY   int
+	Passable bool
+	Image    *ebiten.Image
+}
+
+func NewTile(x int, y int, passable bool, sprite *ebiten.Image) *MapTile {
+	return &MapTile{
+		PixelX:   x,
+		PixelY:   y,
+		Passable: passable,
+		Image:    sprite,
+	}
 }
 
 func (l *Level) GetIndexFromXY(x, y int) int {
@@ -29,30 +38,20 @@ func (l *Level) GetIndexFromXY(x, y int) int {
 	return (y * gameData.ScreenWidth) + x
 }
 
-func (l *Level) CreateTiles() []MapTile {
+func (l *Level) CreateTiles() []*MapTile {
 	gameData := NewGameData()
-	tiles := make([]MapTile, gameData.ScreenHeight*gameData.ScreenWidth)
+	tiles := make([]*MapTile, gameData.ScreenHeight*gameData.ScreenWidth)
 	for x := 0; x < gameData.ScreenWidth; x++ {
 		for y := 0; y < gameData.ScreenHeight; y++ {
 			index := l.GetIndexFromXY(x, y)
 			if x == 0 || x == gameData.ScreenWidth-1 || y == 0 || y == gameData.ScreenHeight-1 {
 				wall := LoadImageFromAssets("wall.png")
-				tile := MapTile{
-					TopLeftPixelX: x * gameData.TileWidth,
-					TopLeftPixelY: y * gameData.TileHeight,
-					Blocks:        true,
-					Image:         wall,
-				}
+				tile := NewTile(x*gameData.TileWidth, y*gameData.TileHeight, true, wall)
 				tiles[index] = tile
 
 			} else {
 				floor := LoadImageFromAssets("floor.png")
-				tile := MapTile{
-					TopLeftPixelX: x * gameData.TileWidth,
-					TopLeftPixelY: y * gameData.TileWidth,
-					Blocks:        false,
-					Image:         floor,
-				}
+				tile := NewTile(x*gameData.TileWidth, y*gameData.TileHeight, false, floor)
 				tiles[index] = tile
 			}
 		}
@@ -66,7 +65,7 @@ func (l *Level) DrawLevel(screen *ebiten.Image) {
 		for y := 0; y < gd.ScreenHeight; y++ {
 			tile := l.Tiles[l.GetIndexFromXY(x, y)]
 			options := &ebiten.DrawImageOptions{}
-			options.GeoM.Translate(float64(tile.TopLeftPixelX), float64(tile.TopLeftPixelY))
+			options.GeoM.Translate(float64(tile.PixelX), float64(tile.PixelY))
 			screen.DrawImage(tile.Image, options)
 		}
 	}

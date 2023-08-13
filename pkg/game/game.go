@@ -29,7 +29,7 @@ func (g *Game) registerPlayerToWorld() {
 	position = g.GameWorld.Manager.NewComponent()
 	renderables = g.GameWorld.Manager.NewComponent()
 	player := g.GameWorld.Manager.NewComponent()
-	g.GameWorld.Manager.NewEntity().AddComponent(player, &Player{}).AddComponent(renderables, &Renderable{Image: LoadImageFromAssets("runner.png")}).AddComponent(position, &Position{X: 40, Y: 40})
+	g.GameWorld.Manager.NewEntity().AddComponent(player, &Player{}).AddComponent(renderables, &Renderable{Image: LoadImageFromAssets("player.png")}).AddComponent(position, &Position{X: 20, Y: 20})
 	players := ecs.BuildTag(player, position)
 	g.GameWorld.Tags[PlayersView] = players
 	renderables := ecs.BuildTag(renderables, position)

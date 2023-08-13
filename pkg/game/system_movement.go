@@ -33,8 +33,6 @@ func MovePlayer(g *Game) {
 		if !tile.Passable {
 			pos.X += x
 			pos.Y += y
-		} else {
-			fmt.Printf("Tile is blocking (%d/%d)\n", pos.X, pos.Y)
 		}
 	}
 }

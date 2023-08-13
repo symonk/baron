@@ -26,7 +26,9 @@ func (p *Player) Move() {
 
 func (p *Player) Revive() {
 	p.Stats.CurrentHealth = 100
+	p.Stats.MaxHealth = 100
 	p.Stats.CurrentMana = 100
+	p.Stats.MaxMana = 100
 	p.IsDead = false
 }
 

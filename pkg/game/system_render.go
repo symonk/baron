@@ -10,7 +10,7 @@ type EntityQueryManager struct {
 // Draw images on top of the tiles.
 // Each Renderable has a current position.
 func DrawEntity(g *Game, level Level, screen *ebiten.Image) {
-	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[RenderablesView]) {
+	for _, result := range g.World.Manager.Query(g.World.Tags[RenderablesView]) {
 		pos := result.Components[position].(*Position)
 		img := result.Components[renderables].(*Renderable).Image
 

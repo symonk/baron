@@ -21,3 +21,4 @@
 go.work
 baronclient
 dist/binary/baron
+*__debug_bin

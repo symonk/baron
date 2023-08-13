@@ -12,30 +12,20 @@ var (
 )
 
 type Game struct {
-	Map       GameMap
-	GameWorld *world.World
-	ticks     int
-	Player    *Player
+	Map    GameMap
+	World  *world.World
+	ticks  int
+	Player *Player
 }
 
 func NewGame() *Game {
-	game := &Game{Map: NewGameMap(), GameWorld: world.NewWorld(), Player: NewPlayer()}
-	game.registerPlayerToWorld()
+	game := &Game{Map: NewGameMap(), World: world.NewWorld(), Player: NewPlayer()}
+	game.Init()
 	return game
 }
 
-// Create an entity and register our player as a componeent.
-func (g *Game) registerPlayerToWorld() {
-	playerEntity := NewPlayer()
-	position = g.GameWorld.Manager.NewComponent()
-	renderables = g.GameWorld.Manager.NewComponent()
-	player := g.GameWorld.Manager.NewComponent()
-	g.GameWorld.Manager.NewEntity().AddComponent(player, playerEntity).AddComponent(renderables, &Renderable{Image: LoadImageFromAssets("player.png")}).AddComponent(position, &Position{X: 20, Y: 20})
-	players := ecs.BuildTag(player, position)
-	g.GameWorld.Tags[PlayersView] = players
-	renderables := ecs.BuildTag(renderables, position)
-	g.GameWorld.Tags[RenderablesView] = renderables
-	g.Player = playerEntity
+func (g *Game) Init() {
+	RegisterEntities(g)
 }
 
 func (g *Game) Update() error {
@@ -46,6 +36,12 @@ func (g *Game) Update() error {
 		ResetPlayer(g)
 	}
 	return nil
+}
+
+func (g *Game) AddTag(key string, elements ...any) {
+	tag := ecs.BuildTag(elements...)
+	g.World.Tags[key] = tag
+
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {

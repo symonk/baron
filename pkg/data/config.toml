@@ -1,0 +1,12 @@
+[Game]
+height = 1280
+width = 1024
+
+[Player]
+name = "player"
+
+[Player.Stats]
+maxHealth = 100
+maxMana = 100
+
+[Level]

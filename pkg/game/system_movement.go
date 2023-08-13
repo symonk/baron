@@ -21,7 +21,7 @@ func MovePlayer(g *Game) {
 	}
 
 	level := g.Map.CurrentLevel
-	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[RenderablesView]) {
+	for _, result := range g.World.Manager.Query(g.World.Tags[RenderablesView]) {
 		pos := result.Components[position].(*Position)
 		index := level.GetIndexFromXY(pos.X+x, pos.Y+y)
 		tile := level.Tiles[index]
@@ -35,7 +35,7 @@ func MovePlayer(g *Game) {
 }
 
 func ResetPlayer(g *Game) {
-	for _, result := range g.GameWorld.Manager.Query(g.GameWorld.Tags[RenderablesView]) {
+	for _, result := range g.World.Manager.Query(g.World.Tags[RenderablesView]) {
 		pos := result.Components[position].(*Position)
 		pos.X = 20
 		pos.Y = 20

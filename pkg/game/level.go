@@ -6,17 +6,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-type Level struct {
-	Tiles []*MapTile
-}
-
-func NewLevel() Level {
-	level := Level{}
-	tiles := level.CreateTiles()
-	level.Tiles = tiles
-	return level
-}
-
 type MapTile struct {
 	PixelX   int
 	PixelY   int
@@ -33,25 +22,35 @@ func NewTile(x int, y int, passable bool, sprite *ebiten.Image) *MapTile {
 	}
 }
 
+type Level struct {
+	Tiles []*MapTile
+	gd    GameData
+}
+
+func NewLevel() Level {
+	level := Level{gd: NewGameData()}
+	tiles := level.CreateTiles()
+	level.Tiles = tiles
+	return level
+}
+
 func (l *Level) GetIndexFromXY(x, y int) int {
-	gameData := NewGameData()
-	return (y * gameData.ScreenWidth) + x
+	return (y * l.gd.ScreenWidth) + x
 }
 
 func (l *Level) CreateTiles() []*MapTile {
-	gameData := NewGameData()
-	tiles := make([]*MapTile, gameData.ScreenHeight*gameData.ScreenWidth)
-	for x := 0; x < gameData.ScreenWidth; x++ {
-		for y := 0; y < gameData.ScreenHeight; y++ {
+	tiles := make([]*MapTile, l.gd.ScreenHeight*l.gd.ScreenWidth)
+	for x := 0; x < l.gd.ScreenWidth; x++ {
+		for y := 0; y < l.gd.ScreenHeight; y++ {
 			index := l.GetIndexFromXY(x, y)
-			if x == 0 || x == gameData.ScreenWidth-1 || y == 0 || y == gameData.ScreenHeight-1 {
+			if x == 0 || x == l.gd.ScreenWidth-1 || y == 0 || y == l.gd.ScreenHeight-1 {
 				wall := LoadImageFromAssets("wall.png")
-				tile := NewTile(x*gameData.TileWidth, y*gameData.TileHeight, true, wall)
+				tile := NewTile(x*l.gd.TileWidth, y*l.gd.TileHeight, true, wall)
 				tiles[index] = tile
 
 			} else {
 				floor := LoadImageFromAssets("floor.png")
-				tile := NewTile(x*gameData.TileWidth, y*gameData.TileHeight, false, floor)
+				tile := NewTile(x*l.gd.TileWidth, y*l.gd.TileHeight, false, floor)
 				tiles[index] = tile
 			}
 		}
